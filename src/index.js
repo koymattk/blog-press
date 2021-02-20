@@ -1,13 +1,30 @@
 const express = require('express');
+const connection = require('./database/connection');
 
 const app = express();
 
+//views engines
 app.set('views', './src/views');
 app.set('view engine', 'ejs')
+
+//Carrega aquivos estaticos
 app.use(express.static('./src/views/public'));
+//leitura de aruivos json e de formularios
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
+
+//conexao com o banco de dados
+connection.authenticate()
+    .then(()=>{
+        console.log("conexao feita com sucesso")
+    })
+    .catch( error => {
+        console.log(error)
+    });
+
+
 app.get('/',(req,res)=>{
+    console.log(process.env.DB)
     res.render('index')
 });
 
