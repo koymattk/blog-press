@@ -2,6 +2,8 @@ const express = require('express');
 const connection = require('./database/connection');
 const categoriesController = require('./controllers/categories/CategoiresController')
 const articlesController =require('./controllers/articles/ArticlesController');
+const Article = require("./models/Articles");
+const Category = require("./models/Categories");
 const app = express();
 
 //views engines
