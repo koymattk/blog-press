@@ -1,6 +1,7 @@
 const express = require('express');
 const connection = require('./database/connection');
 const categoriesController = require('./controllers/categories/CategoiresController')
+const articlesController =require('./controllers/articles/ArticlesController');
 const app = express();
 
 //views engines
@@ -25,6 +26,7 @@ connection.authenticate()
     });
 
 app.use('/categories', categoriesController)
+app.use('/articles', articlesController)
 
 app.get('/',(req,res)=>{
     console.log(process.env.DB)
