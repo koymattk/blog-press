@@ -1,6 +1,6 @@
 const express = require('express');
 const connection = require('./database/connection');
-
+const categoriesController = require('./controllers/categories/CategoiresController')
 const app = express();
 
 //views engines
@@ -13,6 +13,8 @@ app.use(express.static('./src/views/public'));
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
+
+
 //conexao com o banco de dados
 connection.authenticate()
     .then(()=>{
@@ -22,6 +24,7 @@ connection.authenticate()
         console.log(error)
     });
 
+app.use('/categories', categoriesController)
 
 app.get('/',(req,res)=>{
     console.log(process.env.DB)
