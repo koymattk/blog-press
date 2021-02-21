@@ -23,7 +23,8 @@
                         <th><%= category.slug %></th>
                         <th>
                             <button class="btn btn-warning">Edit</button>
-                            <form action="/categories/admin/delete/<%= category.id %>" method="POST" style="display: inline;" >
+                            <form action="/categories/admin/delete/<%= category.id %>" method="POST" style="display: inline;"
+                                onsubmit="confirmDelete(event, this)">
                                 <button class="btn btn-danger">Delete</button>
                             </form>
                         </th>
@@ -34,3 +35,9 @@
     </div>
 </body>
 <%- include ('../../partials/footer.ejs') %>
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault()
+        confirm("Você realmente deseja excluir essa categoria ?") ? form.submit() : console.log('deleção nao realizada')
+    }
+</script>
