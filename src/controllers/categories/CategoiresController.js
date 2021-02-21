@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const categories = require('../../models/Categories');
 const slugify = require('slugify');
+const Category = require('../../models/Categories');
 
 
 router.get('/admin/new', (req,res)=>{
@@ -22,7 +23,9 @@ router.post('/save', (req,res)=>{
     }
 });
 router.get('/admin', (req,res)=>{
-    res.render('admin/categories/index')
+    Category.findAll().then(categories => {        
+        res.render('admin/categories/index', {categories});
+    });
 });
 module.exports = router;
 
