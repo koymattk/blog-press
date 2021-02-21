@@ -18,8 +18,11 @@ router.post('/save', (req,res)=>{
             res.redirect('/');
         });
     }else{
-        es.redirect('/categories/admin/new')
+        res.redirect('/categories/admin/new')
     }
+});
+router.get('/admin', (req,res)=>{
+    res.render('admin/categories/index')
 });
 module.exports = router;
 
