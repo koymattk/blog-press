@@ -5,6 +5,7 @@
         <hr>
         <h1>Categorias</h1>
         <a href="/categories/admin/new" class="btn btn-success">Criar nova categoria</a>
+        <hr>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -22,7 +23,9 @@
                         <th><%= category.slug %></th>
                         <th>
                             <button class="btn btn-warning">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <form action="/categories/admin/delete/<%= category.id %>" method="POST" style="display: inline;" >
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
                         </th>
                     </tr>
                <% }) %>

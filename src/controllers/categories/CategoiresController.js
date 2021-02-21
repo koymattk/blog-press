@@ -27,5 +27,21 @@ router.get('/admin', (req,res)=>{
         res.render('admin/categories/index', {categories});
     });
 });
+
+router.post('/admin/delete/:id', (req,res)=> {
+    const {id} = req.params
+    if (id !== undefined) {
+        Category.destroy({
+            where:{
+                id:id
+            }
+        }).then(()=>{
+            res.redirect('/categories/admin')
+        })
+        
+    } else {
+        res.redirect('/categories/admin')
+    }
+})
 module.exports = router;
 
