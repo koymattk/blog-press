@@ -29,18 +29,33 @@ router.get('/admin', (req,res)=>{
 });
 
 router.post('/admin/delete/:id', (req,res)=> {
-    const {id} = req.params
+    const {id} = req.params;
     if (id !== undefined) {
         Category.destroy({
             where:{
                 id:id
             }
         }).then(()=>{
-            res.redirect('/categories/admin')
+            res.redirect('/categories/admin');
         })
         
     } else {
-        res.redirect('/categories/admin')
+        res.redirect('/categories/admin');
+    }
+});
+
+router.get('/admin/edit/:id', (req,res)=>{
+    const id = req.params.id;
+    console.log(id)
+    if (id !== undefined) {
+        Category.findByPk(id).then(category => {
+            res.render('admin/categories/edit', {category})
+        }).catch(erro =>{
+            console.log(erro)
+        })
+        
+    } else {
+        res.redirect('/categories/admin');
     }
 })
 module.exports = router;
