@@ -31,5 +31,21 @@ router.post('/admin/save/',(req, res) => {
     
 });
 
+router.post('/admin/delete/:id', (req,res)=> {
+    const {id} = req.params;
+    if (id !== undefined) {
+        Article.destroy({
+            where:{
+                id:id
+            }
+        }).then(()=>{
+            res.redirect('/articles/admin');
+        })
+        
+    } else {
+        res.redirect('/articles/admin');
+    }
+});
+
 module.exports = router;
 
