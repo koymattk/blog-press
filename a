@@ -1,0 +1,107 @@
+[33mcommit e62c919a0cff42ae8044f684b8cf5ae4cf762f83[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sun Feb 21 14:28:04 2021 -0300
+
+    adicionando confirmação de delecao
+
+[33mcommit 434c8cf724f57b2808e0c4cabd7e79c22cc705e0[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sun Feb 21 14:14:29 2021 -0300
+
+    criando funcionalidade de criar deletar uma categoria
+
+[33mcommit 3a8a9a21364eedb8e5b1f5e0b3d6e3a7717bbb4d[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sun Feb 21 01:10:26 2021 -0300
+
+    adicionando butões de editar e deletar a pagina de categorias e adicionando um link na navbar
+
+[33mcommit b81afe4fd491102c7535f27737af46aa640c2e3e[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sun Feb 21 01:00:08 2021 -0300
+
+    Deixando a listagem de categorias dinamica
+
+[33mcommit cfc4ac8bca580283866ed59cfe05b8049f6a7e12[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sun Feb 21 00:53:42 2021 -0300
+
+    Criando listagem das categorias
+
+[33mcommit 81f43e056473bb9cb63117b962a7728b7cc7daa9[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 18:46:11 2021 -0300
+
+    adicionando rota para criar novo artigo e salvar no banco de dados
+
+[33mcommit 505e6af87d253be4e0897295a82ac974c63d78a6[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 18:16:01 2021 -0300
+
+    melhorando formulario de envio
+
+[33mcommit bb28b39afc4c0f4d759363dc159a277707c783a4[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 13:15:54 2021 -0300
+
+    adicionando formulario de envio
+
+[33mcommit ae6103d6f1f8f84f8ce3e66c2fa886c5810e8079[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 12:39:18 2021 -0300
+
+    tirando o sync force true
+
+[33mcommit b4f5b258c7a61c26c79ee8611e217b7cc34062a9[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 12:38:46 2021 -0300
+
+    Relacionando os modelos categorias e artigos
+
+[33mcommit 29d04e0430764ced72c38d5b1d8f8faab65bbee1[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 11:38:52 2021 -0300
+
+    Criando model de artigos
+
+[33mcommit 373379481b3f85d8da63f9956be45e6cd0714e00[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 11:36:41 2021 -0300
+
+    Criando model de categorias
+
+[33mcommit 0091e2344fe04bf6f33b0b3a74abfa8c3ec0dbd5[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 11:20:53 2021 -0300
+
+    adicionando controller de artigos
+
+[33mcommit 6de66547622550cc87dbb2ff9fe16c30521bf359[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 11:18:36 2021 -0300
+
+    adicionando controller de categorias
+
+[33mcommit dd0a6400b0f58e8cc54b787c04689eca436d7338[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 10:53:29 2021 -0300
+
+    adicionando partials headers e footer para reaproveitar html
+
+[33mcommit b55199702b8877f0f956e2f7e7267d33efe873a8[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 10:35:52 2021 -0300
+
+    adicionando conexao com banco de dados
+
+[33mcommit 8617b1d791cfd1a17bbde2f6c667ce6b44be5b81[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 10:15:06 2021 -0300
+
+    adicionando views e bootstrap
+
+[33mcommit 12cf8d7cbb031d3336aa33e04453bb9bb2154639[m
+Author: Gabriel <koymattk@gmail.com>
+Date:   Sat Feb 20 01:17:06 2021 -0300
+
+    iniital setup

@@ -49,12 +49,35 @@ router.get('/admin/edit/:id', (req,res)=>{
     console.log(id)
     if (id !== undefined) {
         Category.findByPk(id).then(category => {
+            console.log(category)
+            if (category === null) {
+                res.redirect('/categories/admin');
+            }
             res.render('admin/categories/edit', {category})
         }).catch(erro =>{
             console.log(erro)
         })
         
     } else {
+        res.redirect('/categories/admin');
+    }
+})
+
+router.post('/admin/edit/:id', (req,res)=>{
+    const id = req.params.id;
+    const {title} = req.body;
+    if (id !== undefined) {
+        if (isNaN(id)) {
+            res.redirect('/categories/admin')  
+        }
+        Category.update({title:title, slug:slugify(title)},{
+            where:{
+                id:id
+            }
+        }).then(category => {
+            res.redirect('/categories/admin');
+        })
+    }else{
         res.redirect('/categories/admin');
     }
 })
