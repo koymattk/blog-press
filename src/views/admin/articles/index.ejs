@@ -4,7 +4,7 @@
     <div class="container">
         <hr>
         <h1>Artigos</h1>
-        <a href="/article/admin/new" class="btn btn-success">Criar Um Novo Artigo</a>
+        <a href="/articles/admin/new" class="btn btn-success">Criar Um Novo Artigo</a>
         <hr>
         <table class="table table-bordered">
             <thead>
@@ -22,7 +22,7 @@
                         <th><%= article.id %></th>
                         <th><%= article.title %></th>
                         <th><%= article.slug %></th>
-                        <th><%= article.categoryId %></th>
+                        <th><%= article.category.title %></th>
                         
                     </tr>
                <% }) %>

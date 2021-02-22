@@ -5,7 +5,9 @@ const Category = require('../../models/Categories')
 const Article = require('../../models/Articles');
 
 router.get('/admin', (req,res)=>{
-    Article.findAll().then(article => {
+    Article.findAll({
+        include:[{model:Category}]
+    }).then(article => {
         res.render('admin/articles/index', {article})
     })
 });
