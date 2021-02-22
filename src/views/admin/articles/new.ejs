@@ -10,16 +10,17 @@
             </div>
             <div class="card-body">
     
-                <form method="">
+                <form action="/articles/admin/save" method="POST">
                     <input class="form-control" type="text" name="title" placeholder="defina o titula do Artigo"><br>
-                    <textarea class="form-control" name="" id="article" cols="30" rows="10" placeholder="escreva o seu artigo"></textarea><br>
-                    <button class="btn btn-success">Criar</button>
-                    <hr>
-                    <select class="form-control" name="category" id="">
+                    <textarea class="form-control" name="body" id="article" cols="30" rows="10" placeholder="escreva o seu artigo"></textarea><br>
+                   
+                    
+                    <select class="form-control" name="categoryId" id="">
                         <% category.forEach(category => { %>
-                            <option value="<%= category.id %>""> <%= category.title %> </option>
+                            <option value="<%= category.id%>""> <%= category.title %> </option>
                        <% }) %>
-                    </select>
+                    </select><br>
+                    <button class="btn btn-success">Criar</button>
                 </form>
             </div>
         </div>
