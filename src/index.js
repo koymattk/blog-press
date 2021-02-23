@@ -21,14 +21,14 @@ app.use(express.json());
 //conexao com o banco de dados
 connection.authenticate()
     .then(()=>{
-        console.log("conexao feita com sucesso")
+        console.log("conexao feita com sucesso");
     })
     .catch( error => {
         console.log(error);
     });
 
-app.use('/categories', categoriesController)
-app.use('/articles', articlesController)
+app.use('/categories', categoriesController);
+app.use('/articles', articlesController);
 
 app.get('/',(req,res)=>{
     Article.findAll({
@@ -36,10 +36,10 @@ app.get('/',(req,res)=>{
             ['id','DESC']
         ]
     }).then(article => {
-        Category.findAll().then(catagories => {
-            res.render('index', {article,catagories});
-        })
-    })
+        Category.findAll().then(categories => {
+            res.render('index', {article,categories});
+        });
+    });
 });
 
 app.get('/articles/:slug',(req, res) => {
@@ -50,8 +50,8 @@ app.get('/articles/:slug',(req, res) => {
                 slug:slug
             }
         }).then(article =>{
-            Category.findAll().then(catagories => {
-                res.render('article', {article,catagories});
+            Category.findAll().then(categories => {
+                res.render('article', {article,categories});
             })
         
         }).catch(erro =>{
@@ -60,7 +60,32 @@ app.get('/articles/:slug',(req, res) => {
     }else{
         res.redirect('/');
     }
-})
+});
+
+app.get('/categories/:slug', (req,res) => {
+    const slug = req.params.slug;
+    if (slug != undefined) {  
+
+        Category.findOne({
+            where:{slug:slug},
+            include:[{model:Article}]
+
+        }).then(category => {
+            if(category != undefined){
+                Category.findAll().then(categories =>{
+                    res.render('index', {article: category.articles, categories})
+                });
+            }else{
+                res.redirect('/')
+            }
+        }).catch(erro => {
+            console.log(erro);
+            res.redirect('/');
+        })
+    } else {
+        res.redirect('/');
+    }
+});
 
 
 app.listen(5000,()=>{
