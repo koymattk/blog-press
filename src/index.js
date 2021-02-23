@@ -8,13 +8,13 @@ const app = express();
 
 //views engines
 app.set('views', './src/views');
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 //Carrega aquivos estaticos
 app.use(express.static('./src/views/public'));
 //leitura de aruivos json e de formularios
-app.use(express.urlencoded({extended:false}))
-app.use(express.json())
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
 
 
 
@@ -24,17 +24,38 @@ connection.authenticate()
         console.log("conexao feita com sucesso")
     })
     .catch( error => {
-        console.log(error)
+        console.log(error);
     });
 
 app.use('/categories', categoriesController)
 app.use('/articles', articlesController)
 
 app.get('/',(req,res)=>{
-    Article.findAll().then(article => {
-        res.render('index', {article})
+    Article.findAll({
+        order:[
+            ['id','DESC']
+        ]
+    }).then(article => {
+        res.render('index', {article});
     })
 });
+
+app.get('/articles/:slug',(req, res) => {
+    const slug = req.params.slug;
+    if(slug != undefined){
+        Article.findOne({
+            where:{
+                slug:slug
+            }
+        }).then(article =>{
+            res.render('article', {article});
+        }).catch(erro =>{
+            res.redirect('/');
+        });
+    }else{
+        res.redirect('/');
+    }
+})
 
 
 app.listen(5000,()=>{
