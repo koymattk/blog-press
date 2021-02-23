@@ -31,8 +31,9 @@ app.use('/categories', categoriesController)
 app.use('/articles', articlesController)
 
 app.get('/',(req,res)=>{
-    console.log(process.env.DB)
-    res.render('index')
+    Article.findAll().then(article => {
+        res.render('index', {article})
+    })
 });
 
 
