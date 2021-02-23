@@ -3,7 +3,11 @@
         BlogPress
     </a>
     <ul class="navbar-nav mr-auto">
-       
+        <% catagories.forEach(category => { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/"> <%= category.title %> </a>
+            </li>
+       <% }) %>
         <li class="nav-item">
             <a class="nav-link" href="/">Articles</a>
         </li>
