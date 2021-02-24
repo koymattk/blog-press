@@ -87,5 +87,37 @@ router.post('/admin/edit/:id', (req,res)=>{
     }
 })
 
+router.get('/page/:num', (req,res) => {
+    const page = req.params.num;
+    let offset;
+    if (isNaN(page) || page == 1) {
+        offset = 0
+    }else{
+        offset = parseInt(page) * 4;
+    }
+
+
+    Article.findAndCountAll({
+        limit: 4,
+        offset: offset
+    }).then(articles => {
+        let next;
+        if (offset + 4  >= articles.count){
+            next = false;
+        }else{
+            next = true;
+        }
+        const result = {
+            articles,
+            next
+        }
+        Category.findAll().then(category =>{
+
+            res.render("admin/articles/page",{result, category});
+        })
+    })
+})
+
+
 module.exports = router;
 
