@@ -32,6 +32,7 @@ app.use('/articles', articlesController);
 
 app.get('/',(req,res)=>{
     Article.findAll({
+        limit:4,
         order:[
             ['id','DESC']
         ]

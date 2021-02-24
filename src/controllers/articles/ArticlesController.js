@@ -94,10 +94,14 @@ router.get('/page/:num', (req,res) => {
         offset = 0
     }else{
         offset = parseInt(page) * 4;
+
     }
 
 
     Article.findAndCountAll({
+        order:[
+            ['id','DESC']
+        ],
         limit: 4,
         offset: offset
     }).then(articles => {
@@ -108,6 +112,7 @@ router.get('/page/:num', (req,res) => {
             next = true;
         }
         const result = {
+            page: parseInt(page),
             articles,
             next
         }
