@@ -15,7 +15,10 @@ app.set('view engine', 'ejs');
 
 //session
 app.use(session({
-    secret: "session"
+    secret: "session",
+    cookie:{
+        maxAge:30000
+    }
 }))
 
 //Carrega aquivos estaticos

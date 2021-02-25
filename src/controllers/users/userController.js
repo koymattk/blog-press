@@ -15,26 +15,58 @@ router.get('/admin/create',(req,res)=>{
 })
 
 router.post('/admin/create', (req,res)=>{
-    const user = req.body;
-
+    const name = req.body.name;
+    const email = req.body.email;
+    const password = req.body.password;
     User.findOne({
-        where:{email:user.email}
+        where:{email:email}
     }).then(user => {
         if(user == undefined){
             const salt = bcrypt.genSaltSync(10);
-            const hash = bcrypt.hashSync(user.password, salt);
-            user.password = hash;
-            User.create(user).then(() => {
+            const hash = bcrypt.hashSync(password, salt);
+            const userHash = {
+                name,
+                email,
+                password:hash
+            }
+            User.create(userHash).then(() => {
                 res.redirect('/');
             });  
         }else{
-            
-            res.redirect('/')
+            res.redirect('/');
         }
     })
 
-      
+
 })
+
+router.get('/login', (req,res)=> {
+    res.render("admin/users/login")
+});
+
+router.post('/authenticate', (req,res)=>{
+    const userr = req.body;
+    User.findOne({
+        where: {email: userr.email}
+    }).then(user => {
+        if(user != undefined){
+            const correct = bcrypt.compareSync(userr.password, user.password)
+            if(correct){
+                req.session.user = {
+                    id: user.id,
+                    email: user.email
+                }
+                res.json(req.session.user)
+            }else{
+                console.log('senha incorreta')
+                res.redirect('/users/login')
+                
+            }
+        }else{
+            res.redirect('/users/login')
+        }
+    })
+});
 
 
 module.exports = router;
