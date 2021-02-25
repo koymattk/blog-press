@@ -14,12 +14,24 @@ router.get('/admin/create',(req,res)=>{
 
 router.post('/admin/create', (req,res)=>{
     const user = req.body;
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(user.password, salt);
-    user.password = hash;
-    User.create(user).then(() => {
-        res.redirect('/');
-    });    
+
+    User.findOne({
+        where:{email:user.email}
+    }).then(user => {
+        if(user == undefined){
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(user.password, salt);
+            user.password = hash;
+            User.create(user).then(() => {
+                res.redirect('/');
+            });  
+        }else{
+            
+            res.redirect('/')
+        }
+    })
+
+      
 })
 
 
