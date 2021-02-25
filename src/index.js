@@ -2,8 +2,10 @@ const express = require('express');
 const connection = require('./database/connection');
 const categoriesController = require('./controllers/categories/CategoiresController')
 const articlesController =require('./controllers/articles/ArticlesController');
+const userController = require('./controllers/users/userController');
 const Article = require("./models/Articles");
 const Category = require("./models/Categories");
+const User = require('./models/User');
 const app = express();
 
 //views engines
@@ -29,6 +31,7 @@ connection.authenticate()
 
 app.use('/categories', categoriesController);
 app.use('/articles', articlesController);
+app.use('/users', userController);
 
 app.get('/',(req,res)=>{
     Article.findAll({
