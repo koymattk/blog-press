@@ -4,7 +4,7 @@ const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 
 
-router.get('/', (req,res)=> {
+router.get('/admin', (req,res)=> {
     User.findAll().then(users => {
         res.render('admin/users/index',{users})
     })

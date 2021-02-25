@@ -4,6 +4,7 @@ const categoriesController = require('./controllers/categories/CategoiresControl
 const articlesController =require('./controllers/articles/ArticlesController');
 const userController = require('./controllers/users/userController');
 const Article = require("./models/Articles");
+const session = require('express-session');
 const Category = require("./models/Categories");
 const User = require('./models/User');
 const app = express();
@@ -12,11 +13,17 @@ const app = express();
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
+//session
+app.use(session({
+    secret: "session"
+}))
+
 //Carrega aquivos estaticos
 app.use(express.static('./src/views/public'));
 //leitura de aruivos json e de formularios
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+
 
 
 

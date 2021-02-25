@@ -9,7 +9,7 @@ router.get('/admin/new', (req,res)=>{
     res.render('admin/categories/new');
 });
 
-router.post('/save', (req,res)=>{
+router.post('/admin/save', (req,res)=>{
     const { title } = req.body;
     if (title !== '') {
         categories.create({
