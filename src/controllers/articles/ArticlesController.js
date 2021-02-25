@@ -3,8 +3,9 @@ const router = express.Router();
 const slugify = require('slugify');
 const Category = require('../../models/Categories')
 const Article = require('../../models/Articles');
+const adminAuth = require('../../middlewares/adminAuth');
 
-router.get('/admin', (req,res)=>{
+router.get('/admin', adminAuth, (req,res)=>{
     Article.findAll({
         include:[{model:Category}]
     }).then(article => {
@@ -12,13 +13,13 @@ router.get('/admin', (req,res)=>{
     })
 });
 
-router.get('/admin/new', (req, res)=> {
+router.get('/admin/new', adminAuth, (req, res)=> {
     Category.findAll().then(category =>{
         res.render('admin/articles/new', {category});
     })
 })
 
-router.post('/admin/save/',(req, res) => {
+router.post('/admin/save/', adminAuth, (req, res) => {
     const {title, body, categoryId} = req.body;
     Article.create({
         title,
@@ -31,7 +32,7 @@ router.post('/admin/save/',(req, res) => {
     
 });
 
-router.post('/admin/delete/:id', (req,res)=> {
+router.post('/admin/delete/:id', adminAuth, (req,res)=> {
     const {id} = req.params;
     if (id !== undefined) {
         Article.destroy({
@@ -47,7 +48,7 @@ router.post('/admin/delete/:id', (req,res)=> {
     }
 });
 
-router.get('/admin/edit/:id', (req,res)=>{
+router.get('/admin/edit/:id', adminAuth, (req,res)=>{
     const id = req.params.id;
     console.log(id)
     if (id !== undefined) {
@@ -68,7 +69,7 @@ router.get('/admin/edit/:id', (req,res)=>{
     }
 })
 
-router.post('/admin/edit/:id', (req,res)=>{
+router.post('/admin/edit/:id',  adminAuth, (req,res)=>{
     const id = req.params.id;
     const {title, body} = req.body;
     if (id !== undefined) {
